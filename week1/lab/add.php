@@ -29,13 +29,16 @@ and open the template in the editor.
             $zip = filter_input(INPUT_POST, 'zip');
             $birthday = filter_input(INPUT_POST, 'birthday');
             
-            $message = array();
+            $wordRegex = '/[a-zA-Z0-9\s]*/';
+            $zipRegex = '/^\d{5}(?:[-\s]\d{4})?$/';
             
-            $addresses = getAllAddresses();
+            $message = array();
+            $correct = 1;
 
             if ( isPostRequest() ) 
             {   
-                $correct = 1;
+                
+                
                 if ( empty($fullname) ) 
                 {
                     $message[] = 'Sorry Name is Empty<br>';
@@ -55,12 +58,12 @@ and open the template in the editor.
                 {
                     $message[] = 'Sorry City is Empty<br>';
                     $correct = 2;
-                }             
-                 if ( empty($state) ) 
+                }
+                if ($state === 'XXX')
                 {
-                    $message[] = 'Sorry State is Empty<br>';
+                    $message[] = 'State Must Be Selected<br>';
                     $correct = 2;
-                }            
+                }                
                 if ( empty($zip) ) 
                 {
                     $message[] = 'Sorry Zip is Empty<br>';
@@ -73,22 +76,53 @@ and open the template in the editor.
                 }            
 
 
-                if ( !preg_match($phoneRegex, $phone) ) 
+                if ( !preg_match($wordRegex, $fullname) ) 
                 {
-                    $message = 'Phone Number Is Not valid';
+                    $message[] = 'Name Is Not valid<br>';
+                    $correct = 2;
+                }
+                
+                if ( filter_var($email, FILTER_VALIDATE_EMAIL) == false ) 
+                {
+                    $message[] = 'Email Is Not valid<br>';
+                    $correct = 2;
+                }
+                
+                if ( !preg_match($wordRegex, $addressline1) ) 
+                {
+                    $message[] = 'Address Is Not valid<br>';
+                    $correct = 2;
+                } 
+                if ( !preg_match($wordRegex, $city) ) 
+                {
+                    $message[] = 'City Is Not valid<br>';
+                    $correct = 2;
+                }
+                                 
+                if ( !preg_match($zipRegex, $zip) ) 
+                {
+                    $message[] = 'Zip Code Is Not valid<br>';
+                    $correct = 2;
                 } 
 
-
-
-
-                else if ( addPhone($phone, $phoneType ) ) 
+                if ($correct === 1)
                 {
-                    $message = 'Phone Added';
-                    $phone = '';
-                    $phoneType = '';
-                } 
+                    if ( addAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday ) ) 
+                    {
+                        $message[] = 'Address Added';
+
+                        $fullname = '';
+                        $email = '';
+                        $addressline1 = '';
+                        $city = '';
+                        $state = '';
+                        $zip = '';
+                        $birthday = '';
+                    }
+                }
             }
 
+            include './views/messages.html.php';
             include './views/add-address.html.php';
 
         ?>
