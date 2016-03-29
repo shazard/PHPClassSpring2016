@@ -29,7 +29,7 @@ and open the template in the editor.
             $zip = filter_input(INPUT_POST, 'zip');
             $birthday = filter_input(INPUT_POST, 'birthday');
             
-            $wordRegex = '/[a-zA-Z0-9\s]*/';
+            $wordRegex = '/^[a-zA-Z0-9\s]+$/';
             $zipRegex = '/^\d{5}(?:[-\s]\d{4})?$/';
             
             $message = array();
@@ -74,7 +74,6 @@ and open the template in the editor.
                     $message[] = 'Sorry Birthday is Empty<br>';
                     $correct = 2;
                 }            
-
 
                 if ( !preg_match($wordRegex, $fullname) ) 
                 {
