@@ -108,7 +108,7 @@ and open the template in the editor.
 
                 if ($correct === 1)
                 {
-                    if ( $addAddressDB->addAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday ) ) 
+                    if ( $addressDB->addAddress($fullname, $email, $addressline1, $city, $state, $zip, $birthday ) ) 
                     {
                         $message[] = 'Address Added';
 
