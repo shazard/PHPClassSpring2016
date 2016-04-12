@@ -22,6 +22,7 @@ and open the template in the editor.
             
             $utility = new Utility();
             $addressDB = new DBAddress();
+            $validation = new Validation();
             
             $fullname = filter_input(INPUT_POST, 'fullname');
             $email = filter_input(INPUT_POST, 'email');
@@ -31,32 +32,28 @@ and open the template in the editor.
             $zip = filter_input(INPUT_POST, 'zip');
             $birthday = filter_input(INPUT_POST, 'birthday');
             
-            $wordRegex = '/^[a-zA-Z0-9\s]+$/';
-            $zipRegex = '/^\d{5}(?:[-\s]\d{4})?$/';
-            
             $message = array();
             $correct = 1;
 
             if ( $utility->isPostRequest() ) 
-            {   
+            {  
                 
-                
-                if ( empty($fullname) ) 
+                if ( !$validation->textBoxIsFilled($fullname) ) 
                 {
                     $message[] = 'Sorry Name is Empty<br>';
                     $correct = 2;
                 }
-                if ( empty($email) ) 
+                if ( !$validation->textBoxIsFilled($email) ) 
                 {
                     $message[] = 'Sorry Email is Empty<br>';
                     $correct = 2;
                 }
-                if ( empty($addressline1) ) 
+                if ( !$validation->textBoxIsFilled($addressline1) ) 
                 {
                     $message[] = 'Sorry Address is Empty<br>';
                     $correct = 2;
                 } 
-                if ( empty($city) ) 
+                if ( !$validation->textBoxIsFilled($city) ) 
                 {
                     $message[] = 'Sorry City is Empty<br>';
                     $correct = 2;
@@ -66,41 +63,41 @@ and open the template in the editor.
                     $message[] = 'State Must Be Selected<br>';
                     $correct = 2;
                 }                
-                if ( empty($zip) ) 
+                if ( !$validation->textBoxIsFilled($zip) ) 
                 {
                     $message[] = 'Sorry Zip is Empty<br>';
                     $correct = 2;
                 }            
-                if ( empty($birthday) ) 
+                if ( !$validation->textBoxIsFilled($birthday) ) 
                 {
                     $message[] = 'Sorry Birthday is Empty<br>';
                     $correct = 2;
                 }            
 
-                if ( !preg_match($wordRegex, $fullname) ) 
+                if ( !$validation->textBoxIsValid($fullname) ) 
                 {
                     $message[] = 'Name Is Not valid<br>';
                     $correct = 2;
                 }
                 
-                if ( filter_var($email, FILTER_VALIDATE_EMAIL) == false ) 
+                if ( !$validation->emailIsValid($email) ) 
                 {
                     $message[] = 'Email Is Not valid<br>';
                     $correct = 2;
                 }
                 
-                if ( !preg_match($wordRegex, $addressline1) ) 
+                if ( !$validation->textBoxIsValid($addressline1) ) 
                 {
                     $message[] = 'Address Is Not valid<br>';
                     $correct = 2;
                 } 
-                if ( !preg_match($wordRegex, $city) ) 
+                if ( !$validation->textBoxIsValid($city) ) 
                 {
                     $message[] = 'City Is Not valid<br>';
                     $correct = 2;
                 }
                                  
-                if ( !preg_match($zipRegex, $zip) ) 
+                if ( !$validation->zipCodeIsValid($zip) ) 
                 {
                     $message[] = 'Zip Code Is Not valid<br>';
                     $correct = 2;
