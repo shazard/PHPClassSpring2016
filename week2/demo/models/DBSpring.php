@@ -21,7 +21,7 @@ class DBSpring extends DB {
         $this->setUser('root');        
     }
     
-     function getAllPhones() {
+    function getAllPhones() {
         $db = $this->getDb();
         $stmt = $db->prepare("SELECT * FROM phone");
         $results = array();
