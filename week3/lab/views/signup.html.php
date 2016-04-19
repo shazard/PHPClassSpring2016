@@ -3,9 +3,9 @@ if ( $utility->isPostRequest() ) {
         $signupemail = filter_input(INPUT_POST, 'signup_email');
         $signuppassword = filter_input(INPUT_POST, 'signup_pass');
         
-        if (!isItemInDB($signupemail, "email", "users"))
+        if (!$userDB->isItemInDB($signupemail, "email", "users"))
         {
-            if ( doCreateUser($signupemail, $signuppassword) ) 
+            if ( $userDB->createUser($signupemail, $signuppassword) ) 
             {
                 $results = '<h3>New user created</h3>';
             } 

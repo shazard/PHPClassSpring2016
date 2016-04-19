@@ -27,7 +27,7 @@
                 {
                     $email = filter_input(INPUT_POST, 'email');
                     $password = filter_input(INPUT_POST, 'pass');
-                    if ( isValidUser($email, $password) ) {
+                    if ( $userDB->isValidUser($email, $password) ) {
                         $_SESSION['isValidUser'] = true;
                         header('Location: index.php?view=admin');
                     } 
@@ -59,7 +59,7 @@
                 else
                 {
                     /* Default include for log in or signup if not logged in*/
-                    include './includes/default.html.php';
+                    include './views/default.html.php';
                 }
         ?>
         

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    //session_start();
     require_once 'includes/accessrequired.html.php';
     //echo $_SESSION['currentUserID'];
     $currentUserID = $_SESSION['currentUserID'];
@@ -10,6 +10,6 @@
 
 <br><br>
 
-<a href="logout.php">Log Out</a>
+<a href="./logout.html.php">Log Out</a>
 
 <hr>
