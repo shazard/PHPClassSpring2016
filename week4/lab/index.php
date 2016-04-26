@@ -27,6 +27,7 @@
         <p><a href="?view=list">View All Files</a></p>
         
         <?php
+                $view = filter_input(INPUT_GET, 'view');
                 //change display page based on $view from INPUT_GET
                 if (  $view === 'new' ) 
                 {
@@ -54,7 +55,8 @@
         
         <?php 
                 //output of success or error messages
-                include 'includes/results.html.php'; 
+                include 'includes/results.html.php';
+                unset($_SESSION['results']);
         ?>
         
         

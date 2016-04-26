@@ -37,7 +37,7 @@ class FileHandler
         }
 
         // You should also check filesize here. 
-        if ($_FILES[$keyName]['size'] > 1000000) 
+        if ($_FILES[$keyName]['size'] > 10000000) 
         {
             throw new RuntimeException('Exceeded filesize limit.');
         }
@@ -69,7 +69,7 @@ class FileHandler
         // On this example, obtain safe unique name from its binary data.
 
         $salt = uniqid(mt_rand(), true);
-        $fileName = 'img_' . sha1($salt . sha1_file($_FILES[$keyName]['tmp_name']));
+        $fileName = "file_" . $ext . "_" . sha1($salt . sha1_file($_FILES[$keyName]['tmp_name']));
         $location = sprintf('./uploads/%s.%s', $fileName, $ext);
 
         if (!is_dir('./uploads')) 
@@ -111,7 +111,7 @@ class FileHandler
             }
 
             // You should also check filesize here. 
-            if ($_FILES[$keyName]['size'] > 1000000) {
+            if ($_FILES[$keyName]['size'] > 10000000) {
                 throw new RuntimeException('Exceeded filesize limit.');
             }
 
@@ -129,7 +129,7 @@ class FileHandler
             // On this example, obtain safe unique name from its binary data.
 
             $salt = uniqid(mt_rand(), true);
-            $fileName = 'img_' . sha1($salt . sha1_file($_FILES[$keyName]['tmp_name']));
+            $fileName = "file_" . $ext . "_" . sha1($salt . sha1_file($_FILES[$keyName]['tmp_name']));
             $location = sprintf('./uploads/%s.%s', $fileName, $ext);
 
             if (!is_dir('./uploads')) {
