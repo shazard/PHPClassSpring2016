@@ -11,7 +11,8 @@
          * make sure php_fileinfo.dll extension is enable in php.ini
          */
 
-        try {
+        try 
+        {
 
             // Undefined | Multiple Files | $_FILES Corruption Attack
             // If this request falls under any of them, treat it invalid.
@@ -81,7 +82,9 @@
             }
 
             echo 'File is uploaded successfully.';
-        } catch (RuntimeException $e) {
+        } 
+        catch (RuntimeException $e) 
+        {
 
             echo $e->getMessage();
         }
