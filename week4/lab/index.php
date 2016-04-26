@@ -22,7 +22,9 @@
             
         ?>
         
+        <p><a href="?view=default">Return Home</a></p>
         <p><a href="?view=new">Add a New File</a></p>
+        <p><a href="?view=list">View All Files</a></p>
         
         <?php
                 //change display page based on $view from INPUT_GET
