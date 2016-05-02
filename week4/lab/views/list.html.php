@@ -34,10 +34,10 @@
                 <a href="index.php" class="btn btn-danger">Delete</a></h1></p>
                 
                 <form method="post" action='#'>
+                    <hidden value="<?php? echo '.'.DIRECTORY_SEPARATOR. 'includes' .DIRECTORY_SEPARATOR.'uploads'
+                    .DIRECTORY_SEPARATOR. $fileInfo->getFilename(); ?>" name="fileToDelete"/>
+                    <button class="btn btn-danger" value='true' name='isDelete'>Delete</button>
                     
-                    <button class="btn btn-danger" value='true' name='del'>Delete</button>
-                    $file = '.'.DIRECTORY_SEPARATOR. 'includes' .DIRECTORY_SEPARATOR.'uploads'
-                    .DIRECTORY_SEPARATOR. $fileInfo->getFilename();
                 </form>
 
 
