@@ -148,6 +148,14 @@ class FileHandler
             echo $e->getMessage();
         }
     }
+    function delete($filePath)
+    {    
+        if (!unlink($filePath))
+        {        
+            return false;
+        }
+        return true;
+    }
     
     
 }
