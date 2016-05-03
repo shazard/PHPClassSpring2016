@@ -150,11 +150,8 @@ class FileHandler
     }
     function delete($filePath)
     {    
-        if (!unlink($filePath))
-        {        
-            return false;
-        }
-        return true;
+        return unlink($filePath);
+ 
     }
     
     

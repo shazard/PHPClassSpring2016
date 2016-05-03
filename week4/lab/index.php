@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Week 3 Lab</title>
+        <title>Week 4 Lab</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
@@ -19,6 +19,8 @@
 
             require_once './autoload.php';
             $utility = new Utility();
+          
+            var_dump($_SESSION['results']);
             
         ?>
         
