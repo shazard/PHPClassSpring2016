@@ -46,5 +46,4 @@
         <form method="post" action='#'>
             <input type=hidden value="<?php echo $file; ?>" name="fileToDelete"/>
             <button class="btn btn-danger" value='true' name='isDelete'>Delete</button>
-
         </form>

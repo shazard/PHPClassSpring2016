@@ -126,7 +126,6 @@ class FileHandler
 
             // You should name it uniquely.
             // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
-            // On this example, obtain safe unique name from its binary data.
 
             $salt = uniqid(mt_rand(), true);
             $fileName = "file_" . $ext . "_" . sha1($salt . sha1_file($_FILES[$keyName]['tmp_name']));
@@ -148,6 +147,7 @@ class FileHandler
             echo $e->getMessage();
         }
     }
+    
     function delete($filePath)
     {    
         return unlink($filePath);

@@ -23,7 +23,7 @@
                 
                 if($fileHandler1->delete(filter_input(INPUT_POST, 'fileToDelete')))
                 {
-                    $_SESSION['results'] = filter_input(INPUT_POST, 'fileToDelete') . "DELETED!";
+                    $_SESSION['results'] = filter_input(INPUT_POST, 'fileToDelete') . " DELETED!";
                     
                 }
                 else
@@ -31,7 +31,8 @@
                     $_SESSION['results'] = "Not Deleted!";
                     
                 }
-                header('Location: ./index.php?view=default');
+                var_dump($_SESSION);
+                //header('Location: ./index.php?view=default');
                 
             //got this from chris u - refresh helps ensure server redirects by force refreshing the page
             //header('Refresh:0; '.'index.php');  
