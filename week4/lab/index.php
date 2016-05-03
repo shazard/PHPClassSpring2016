@@ -19,8 +19,6 @@
 
             require_once './autoload.php';
             $utility = new Utility();
-          
-            var_dump($_SESSION);
             
         ?>
         

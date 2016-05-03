@@ -6,9 +6,11 @@ if ($utility->isPostRequest())
     {
         $filehandler = new FileHandler();
 
-        try {
+        try 
+        {
             $fileName = $filehandler->upLoad('upfile');
-        } catch (RuntimeException $e) {
+        } 
+        catch (RuntimeException $e) {
             $error = $e->getMessage();
         }
         if (isset($fileName))
