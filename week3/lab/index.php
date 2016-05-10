@@ -29,6 +29,7 @@
                     $password = filter_input(INPUT_POST, 'pass');
                     if ( $userDB->isValidUser($email, $password) ) {
                         $_SESSION['isValidUser'] = true;
+                        $_SESSION['userId'] = $_SESSION['currentUserID'];
                         header('Location: index.php?view=admin');
                     } 
 

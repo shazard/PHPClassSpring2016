@@ -14,7 +14,15 @@
         
 
 ?>
-        <?php echo 'File Size: ' . filesize($file) . " bytes"; ?>
+
+        <b>File Type:</b> <?php echo  $type; ?>
+        <br>
+        <b>File Size:</b> <?php echo filesize($file) ?> bytes
+        <br>
+        <b>Date Created:</b> <?php echo date("F d Y H:i:s.",filemtime($file)); ?>
+        
+        <br><br>
+
         <form enctype="multipart/form-data" action="./includes/deleteFile.php" method="POST">
             <input type="hidden" name="fileToDelete" value="<?php echo '.'.DIRECTORY_SEPARATOR. 'uploads'
                 .DIRECTORY_SEPARATOR. filter_input(INPUT_GET, 'file'); ?>"/>
@@ -22,38 +30,28 @@
         </form>
         
         <hr>
-        
-    <?php
     
-     switch ($type)
-     {
-            case 'text/plain':
-            case'text/html':
-//                echo '<textarea rows="50" cols="75">' . $file . '</textarea>';
-//                break;
-            case'application/pdf':
-                echo '<iframe width="100%" height="500px" src="' . $file . '"></iframe>';
-                break;
-            case'application/msword':
-            case'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-            case 'application/vnd.ms-excel':
-            case'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-                //http://localhost/PHPClassSpring2015/week4/lab/includes/uploads/file_docxb0589cdb04b1050b22bea6b3a8a4a92af3001a28.docx
-                echo '<a href="' . $file . '"></a>';
-                break;
-            case'image/jpeg':
-            case'image/png':
-            case'image/gif':
-                echo '<img src="' . $file . '"></img>';
-                break;
-            default:
-                break;
-     }
-?>
-        
+     <?php switch ($type): case 'text/plain': ?>
+     <?php case'text/html': case'application/pdf': ?>
+            <iframe width="100%" height="500px" src="<?php echo $file ?>"></iframe>
+            <?php break; ?>
+     <?php case'application/msword': 
+        case'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        case 'application/vnd.ms-excel':
+        case'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ?>
+            <a class="btn btn-info" href="<?php echo $file ?>">Download</a>
+            <?php break; ?>
+    <?php case'image/jpeg':
+        case'image/png':
+        case'image/gif': ?>
+            <img src="<?php echo $file ?>"></img>';
+            <?php break; ?>
+    <?php default: ?>
+            <?php break; ?>
+    <?php endswitch; ?>
 
             
             
 
-<!--<textarea rows="4" cols="50"></textarea>-->
+
           
