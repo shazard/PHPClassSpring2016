@@ -8,7 +8,8 @@ include_once './bootstrap.php';
  */
 $restServer = new RestServer();
 
-try {
+try
+{
     
     $restServer->setStatus(200);
     
@@ -28,48 +29,79 @@ try {
      * But in this example we will just code it out.
      * 
      */
-    if ( 'address' === $resource ) {
+    if ( 'corporation' === $resource ) 
+    {        
+        $resourceData = new CorporationResoruce();
         
-        $resourceData = new AddressResoruce();
-        
-        if ( 'GET' === $verb ) {
-            
-            if ( NULL === $id ) {
-                
-                $restServer->setData($resourceData->getAll());                           
-                
-            } else {
-                
+        if ( 'GET' === $verb ) 
+        {            
+            if ( NULL === $id ) 
+            {                
+                $restServer->setData($resourceData->getAll());
+            }
+            else
+            {
                 $restServer->setData($resourceData->get($id));
-                
-            }            
-            
+            }
         }
                 
-        if ( 'POST' === $verb ) {
-            
-
-            if ($resourceData->post($serverData)) {
-                $restServer->setMessage('Address Added');
+        if ( 'POST' === $verb ) 
+        {
+            if ($resourceData->post($serverData)) 
+            {
+                $restServer->setMessage('Corporation Added');
                 $restServer->setStatus(201);
-            } else {
-                throw new Exception('Address could not be added');
             }
-        
+            else 
+            {
+                throw new Exception('Corporation could not be added');
+            }        
         }
         
-        
-        if ( 'PUT' === $verb ) {
-            
-            if ( NULL === $id ) {
-                throw new InvalidArgumentException('Address ID ' . $id . ' was not found');
+        if ( 'PUT' === $verb ) 
+        {
+            if ( !NULL === $id ) 
+            {
+                if ($resourceData->put($serverData)) 
+                {
+                    $restServer->setMessage('Corporation Updated');
+                    $restServer->setStatus(201);
+                }
+                else 
+                {
+                    throw new Exception('Corporation could not be updated');
+                }                
             }
-            
+            else
+            {
+                throw new InvalidArgumentException('Corporation ID required');
+            }            
         }
-        
-    } else {
-        throw new InvalidArgumentException($resource . ' Resource Not Found');
-        
+        if ( 'DELETE' === $verb ) 
+        {
+            if ( !NULL === $id ) 
+            {
+                if ($resourceData->delete($id)) 
+                {
+                    $restServer->setMessage('Corporation DELETED');
+                    $restServer->setStatus(201);
+                }
+                else 
+                {
+                    throw new Exception('Corporation could not be deleted');
+                }                
+            }
+            else
+            {
+                throw new InvalidArgumentException('Corporation ID required');
+            }            
+        }        
+    }    
+    else 
+    {
+        $restServer->setStatus(400);
+        $restServer->setMessage('Resource Not Found');
+        throw new InvalidArgumentException($resource . ' Resource Not Found');        
     }
    
     
