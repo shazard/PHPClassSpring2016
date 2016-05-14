@@ -29,9 +29,9 @@ try
      * But in this example we will just code it out.
      * 
      */
-    if ( 'corporation' === $resource ) 
+    if ( 'corps' === $resource ) 
     {        
-        $resourceData = new CorporationResoruce();
+        $resourceData = new CorporationResource();
         
         if ( 'GET' === $verb ) 
         {            

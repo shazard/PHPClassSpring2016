@@ -1,6 +1,6 @@
 <?php
 
-class CorporationResoruce extends DB implements IRestModel {
+class CorporationResource extends DB implements IRestModel {
     
     function __construct() {
         

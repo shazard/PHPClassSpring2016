@@ -31,7 +31,7 @@
         <br/>
         <br />
         Resource for endpoint:<br />
-        <input name="resource" value="corporation" />
+        <input name="resource" value="corps" />
         <br />
         <br />
         Data(optional):<br />  
