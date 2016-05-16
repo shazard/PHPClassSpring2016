@@ -60,9 +60,9 @@ try
         
         if ( 'PUT' === $verb ) 
         {
-            if ( !NULL === $id ) 
+            if ( !NULL == $id ) 
             {
-                if ($resourceData->put($serverData)) 
+                if ($resourceData->put($id, $serverData)) 
                 {
                     $restServer->setMessage('Corporation Updated');
                     $restServer->setStatus(201);
@@ -79,7 +79,7 @@ try
         }
         if ( 'DELETE' === $verb ) 
         {
-            if ( !NULL === $id ) 
+            if ( !NULL == $id ) 
             {
                 if ($resourceData->delete($id)) 
                 {

@@ -61,11 +61,11 @@ class CorporationResource extends DB implements IRestModel {
         return false;
     }
     
-        public function put($serverData) {
+        public function put($id, $serverData) {
         /* note you should validate before adding to the data base */
         $stmt = $this->getDb()->prepare("UPDATE corps SET corp = :corp, incorp_dt = :incorp_dt, email = :email, owner = :owner, phone = :phone, location = :location WHERE id = :id");
         $binds = array(
-            ":id" => $serverData['id'],
+            ":id" => $id,
             ":corp" => $serverData['corp'],
             ":incorp_dt" => $serverData['incorp_dt'],
             ":email" => $serverData['email'],
