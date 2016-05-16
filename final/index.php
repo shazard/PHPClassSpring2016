@@ -5,11 +5,46 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Week 3 Lab</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PHP Final</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        
+        <style type="text/css"> 
+            #files-img {
+                border: 5px dashed #D9D9D9;
+                border-radius: 10px;
+                padding: 1em 2em;
+                text-align: center;
+
+            }
+            .over {
+                background: #F7F7F7;
+            }
+
+            input {
+                margin: 0.5em;
+                padding: 0.5em;
+            }
+
+            #img-file-content img {
+                max-width: 100%;
+            }
+            .meme {
+                width: 300px; 
+                border: 1px solid silver;
+                padding: 0.5em;
+                text-align: center;
+                margin: 0.5em;
+                vertical-align: middle;
+            }
+        </style>
+        
+        
+        
     </head>
     <body>
         
@@ -55,6 +90,11 @@
                 {
                     //new user sign up page
                     include './views/signup.html.php';
+                }
+                else if (  $view === 'view' ) 
+                {
+                    //new user sign up page
+                    include './views/view.html.php';
                 }
 
                 else
