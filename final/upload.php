@@ -3,12 +3,19 @@
 header("Access-Control-Allow-Orgin: *");
 header("Content-Type: application/json; charset=utf8");
 
+session_start();
+
+require_once './autoload.php';
+
 $status_codes = array(
     200 => 'OK',
     500 => 'Internal Server Error',
 );
-
 $status = 200;
+$currentUserID = $_SESSION['currentUserID'];
+
+$imageSaveSuccess = 1;
+$newPhoto = new DBPhotos();
 
 /*
  * make sure php_fileinfo.dll extension is enable in php.ini
@@ -130,6 +137,7 @@ try {
 
     $memetop = filter_input(INPUT_POST, 'memetop');
     $memebottom = filter_input(INPUT_POST, 'memebottom');
+    
 //Font Color (white in this case)
     $textcolor = imagecolorallocate($image_p, 255, 255, 255);
     $bgcolor = imagecolorallocate($image_p, 0, 0, 0);
@@ -160,34 +168,43 @@ try {
     switch ($ext) {
         case "jpg" :
         case "jpeg" :
-            if (!imagejpeg($image_p, $location)) {
+            if (!imagejpeg($image_p, $location)) 
+            {
+                $imageSaveSuccess = 2;
                 throw new RuntimeException('Failed to move uploaded file.');
             }
             break;
         case "gif" :
-            if (!imagegif($image_p, $location)) {
+            if (!imagegif($image_p, $location)) 
+            {
+                $imageSaveSuccess = 2;
                 throw new RuntimeException('Failed to move uploaded file.');
             }
             break;
         case "png" :
-            if (!imagepng($image_p, $location)) {
+            if (!imagepng($image_p, $location)) 
+            {
+                $imageSaveSuccess = 2;
                 throw new RuntimeException('Failed to move uploaded file.');
             }
             break;
 
         default :
+            $imageSaveSuccess = 2;
             throw new RuntimeException("Error Bad Extention");
             break;
     }
-
-
-
-
+    
+    $imageTitle = filter_input(INPUT_POST, 'imageTitle');
+    if ($imageSaveSuccess === 1)
+    {        
+        $newPhoto->addPhoto($fileName, $currentUserID, $imageTitle);
+    }
+    
+    
     imagedestroy($rImg);
     imagedestroy($image_p);
     
-   
-
     /*
       if ( !move_uploaded_file( $_FILES["upfile"]["tmp_name"], $location) ) {
         throw new RuntimeException('Failed to move uploaded file.');

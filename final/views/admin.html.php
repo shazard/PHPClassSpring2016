@@ -18,6 +18,7 @@
         </p>
         <p>
         <form>
+            <input type="text" placeholder="Title" name="imageTitle" value="" required="required" /> <br />
             <input type="text" placeholder="Meme Top text" name="memetop" value="" required="required" /> <br />
             <input type="text" placeholder="Meme Botom text" name="memebottom" value="" required="required" /> 
             <br />
@@ -66,6 +67,7 @@
         var uploadProgress = document.querySelector('.progress');
         var memeTopText = document.querySelector('input[name="memetop"]');
         var memeBottomText = document.querySelector('input[name="memebottom"]');
+        var imageTitle = document.querySelector('input[name="imageTitle"]');
         var SubmitBtn = document.querySelector('input[type="button"]');
 
         var imageReady = false,
@@ -181,6 +183,7 @@
             formData.append('upfile', data);
             formData.append(memeTopText.name, memeTopText.value);
             formData.append(memeBottomText.name, memeBottomText.value);
+            formData.append(imageTitle.name, imageTitle.value);
 
             xmlhttp.open(verb, url, true);
             xmlhttp.send(formData);
