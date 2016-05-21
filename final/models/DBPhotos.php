@@ -50,13 +50,6 @@ class DBPhotos extends DB
         return false; 
     }
     
-    //deletes file from server
-     public function deleteFile($filePath)
-    {    
-        return unlink($filePath);
- 
-    }
-    
     public function getPhotoTitleByFileName( $filename ) 
     {
         $db = $this->getDb();
@@ -83,7 +76,7 @@ class DBPhotos extends DB
     {
         $db = $this->getDb();
         $resultsFromDB = array();
-        $stmt = $db->prepare("SELECT filename FROM photos WHERE user_id = :user_id");
+        $stmt = $db->prepare("SELECT * FROM photos WHERE user_id = :user_id");
         
         $binds = array(
             ":user_id" => $userId,       

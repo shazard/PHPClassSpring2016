@@ -21,6 +21,7 @@
                     $files[$fileInfo->getMTime()]["uploadDate"] = $fileInfo->getMTime();
                     $files[$fileInfo->getMTime()]["pathName"] = $fileInfo->getPathname();
                     $files[$fileInfo->getMTime()]["fileName"] = $fileInfo->getFilename();
+                    $files[$fileInfo->getMTime()]["photo_id"] = $filesByUser[$i]["photo_id"];
                 }
             }
 
@@ -31,7 +32,6 @@
     
     //var_dump ($filesByUser);
 ?>
-
 
 <h1>Welcome To The View Your Memes Page, <?php echo $_SESSION['currentUserEmail']; ?></h1>
 
@@ -51,8 +51,17 @@
                 <p>Created: <?php echo date("l F j, Y, g:i a", $file["uploadDate"]); ?></p>
                 <br>
                 <!-- Place this tag where you want the share button to render. -->
-                <div class="g-plus" data-action="share" data-href="<?php echo $file["pathName"]; ?>"></div> 
+                <div class="g-plus" data-action="share" data-href="<?php echo $file["pathName"]; ?>"></div>
+                <br><br>
+                <form enctype="multipart/form-data" action="./includes/deleteFile.php" method="POST">
+                    <input type="hidden" name="fileToDelete" value="<?php echo $file["pathName"]; ?>"/>
+                    <input type="hidden" name="photoIdToDelete" value="<?php echo $file["photo_id"]; ?>"/>
+                    <input type="submit" class="btn btn-danger" value="Delete File" />
+                </form>
+                
+                
             </div>
+
 <?php endforeach; ?>
 
 <hr>

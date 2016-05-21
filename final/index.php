@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--
 
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,39 +10,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-        
-        <style type="text/css"> 
-            #files-img {
-                border: 5px dashed #D9D9D9;
-                border-radius: 10px;
-                padding: 1em 2em;
-                text-align: center;
-
-            }
-            .over {
-                background: #F7F7F7;
-            }
-
-            input {
-                margin: 0.5em;
-                padding: 0.5em;
-            }
-
-            #img-file-content img {
-                max-width: 100%;
-            }
-            .meme {
-                width: 350px; 
-                border: 1px solid silver;
-                padding: 0.5em;
-                text-align: center;
-                margin: 0.5em;
-                vertical-align: middle;
-            }
-        </style>
-        
-        
-        
+        <!-- My styles for images and uploads-->
+        <link rel="stylesheet" href="./stylesheets/styles.css">
     </head>
     <body>
         
@@ -78,6 +45,12 @@
                 }
         ?>
         
+        <?php 
+            //output of success or error messages
+            include 'includes/results.html.php';
+            unset($_SESSION['results']);
+        ?>
+        
         <?php
                 //change display page based on $view from INPUT_GET
                 if (  $view === 'home' ) 
@@ -108,14 +81,6 @@
                     include './views/default.html.php';
                 }
         ?>
-        
-        <?php 
-                //output of success or error messages
-                include 'includes/results.html.php'; 
-        ?>
-        
-        
-        
         
     </body>
 </html>
