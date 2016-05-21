@@ -34,7 +34,7 @@
                 max-width: 100%;
             }
             .meme {
-                width: 300px; 
+                width: 350px; 
                 border: 1px solid silver;
                 padding: 0.5em;
                 text-align: center;

@@ -4,6 +4,7 @@
     //echo $_SESSION['currentUserID'];
     $currentUserID = $_SESSION['currentUserID'];
  
+    $photoDB = new DBPhotos();
     $files = array();
     $directory = '.' . DIRECTORY_SEPARATOR . 'uploads';
     $dir = new DirectoryIterator($directory);
@@ -11,10 +12,14 @@
     {
         if ($fileInfo->isFile()) 
         {
-            $files[$fileInfo->getMTime()] = $fileInfo->getPathname();
+            $files[$fileInfo->getMTime()]["uploadDate"] = $fileInfo->getMTime();
+            $files[$fileInfo->getMTime()]["pathName"] = $fileInfo->getPathname();
+            $files[$fileInfo->getMTime()]["fileName"] = $fileInfo->getFilename();
         }
     }
 
+    
+    
     krsort($files);    
 ?>
 
@@ -26,15 +31,20 @@
 <a href="./logout.html.php">Log Out</a>
 
 <hr>
-<?php foreach ($files as $key => $path):?> 
-            <div class="meme"> 
-                <img src="<?php echo $path; ?>" /> <br />
-                <?php echo date("l F j, Y, g:i a", $key); ?>
+
+<?php foreach ($files as $file):?> 
+            <div class="meme">
+                <h2> <?php echo $photoDB->getPhotoTitleByFileName( $file["fileName"] ); ?></h2>
+                <br>
+                <img src="<?php echo $file["pathName"]; ?>" /> <br />
+                <p>Created: <?php echo date("l F j, Y, g:i a", $file["uploadDate"]); ?></p>
+                <br>
                 <!-- Place this tag where you want the share button to render. -->
-                <div class="g-plus" data-action="share" data-href="<?php echo $path; ?>"></div> 
+                <div class="g-plus" data-action="share" data-href="<?php echo $file["pathName"]; ?>"></div> 
             </div>
 <?php endforeach; ?>
 
-        <p><a href="?view=home">Return Home</a></p>
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
+<hr>
+<p><a href="?view=home">Return Home</a></p>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>

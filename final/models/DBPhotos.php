@@ -14,7 +14,7 @@ class DBPhotos extends DB
         $stmt = $db->prepare("INSERT INTO photos SET user_id = :user_id, filename = :filename, title = :title, views = 0, created = now()");
         $binds = array(
             ":user_id" => $user,
-            ":filename" => $fileName,
+            ":filename" => $fileName . ".jpg",
             ":title" => $title
         );
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
@@ -57,6 +57,46 @@ class DBPhotos extends DB
  
     }
     
+    public function getPhotoTitleByFileName( $filename ) 
+    {
+        $db = $this->getDb();
+        $resultsFromDB = array();
+        $stmt = $db->prepare("SELECT title FROM photos WHERE filename = :filename");
+        
+        $binds = array(
+            ":filename" => $filename,       
+        );
+        
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) 
+        {
+            $resultsFromDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $resultsFromDB[0]['title'];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    
+        public function getPhotosByUser( $userId ) 
+    {
+        $db = $this->getDb();
+        $resultsFromDB = array();
+        $stmt = $db->prepare("SELECT filename FROM photos WHERE user_id = :user_id");
+        
+        $binds = array(
+            ":user_id" => $userId,       
+        );
+        
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) 
+        {
+            $resultsFromDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $resultsFromDB;
+        }
+
+    }
     
     
     
