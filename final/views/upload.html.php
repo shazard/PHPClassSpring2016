@@ -8,6 +8,8 @@
 
 <br><br>
 
+<p><a href="?view=home">Return Home</a></p>
+<p><a href="?view=view">View all user created Memes</a></p>
 <a href="./logout.html.php">Log Out</a>
 
 <hr>

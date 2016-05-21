@@ -65,7 +65,7 @@
                     if ( $userDB->isValidUser($email, $password) ) {
                         $_SESSION['isValidUser'] = true;
                         $_SESSION['userId'] = $_SESSION['currentUserID'];
-                        header('Location: index.php?view=admin');
+                        header('Location: index.php?view=home');
                     } 
 
                     else 
@@ -80,16 +80,21 @@
         
         <?php
                 //change display page based on $view from INPUT_GET
-                if (  $view === 'admin' ) 
+                if (  $view === 'home' ) 
                 {
                     //main user view page
-                    include './views/admin.html.php';
+                    include './views/home.html.php';
                 }
                 
                 else if (  $view === 'signup' ) 
                 {
                     //new user sign up page
                     include './views/signup.html.php';
+                }
+                else if (  $view === 'upload' ) 
+                {
+                    //new user sign up page
+                    include './views/upload.html.php';
                 }
                 else if (  $view === 'view' ) 
                 {

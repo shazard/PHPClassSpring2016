@@ -14,15 +14,15 @@
             $files[$fileInfo->getMTime()] = $fileInfo->getPathname();
         }
     }
-
     krsort($files);    
 ?>
 
-<h1>Welcome To The View Memes Page, <?php echo $_SESSION['currentUserEmail']; ?></h1>
+<h1>Welcome To The View Your Memes Page, <?php echo $_SESSION['currentUserEmail']; ?></h1>
 
 <br><br>
-<p><a href="?view=home">Return Home</a></p>
+
 <p><a href="?view=upload">Upload a new image</a></p>
+<p><a href="?view=view">View all user created Memes</a></p>
 <a href="./logout.html.php">Log Out</a>
 
 <hr>

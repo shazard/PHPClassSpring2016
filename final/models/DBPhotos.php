@@ -36,6 +36,27 @@ class DBPhotos extends DB
         return false;
     }
     
+    //deletes photo info from database
+    public function deletePhotoDBInfo ($photoID)
+    {
+        $db = $this->getDb();
+        $stmt = $db->prepare("DELETE FROM photos WHERE photo_id = :photo_id");
+        $binds = array(
+            ":photo_id" => $photoID
+        );                
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            return true;
+        }        
+        return false; 
+    }
+    
+    //deletes file from server
+     public function deleteFile($filePath)
+    {    
+        return unlink($filePath);
+ 
+    }
+    
     
     
     
