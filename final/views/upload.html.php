@@ -4,11 +4,11 @@
     //echo $_SESSION['currentUserID'];
     $currentUserID = $_SESSION['currentUserID'];    
 ?>
-<h1>Welcome To The Meme Creation Page, <?php echo $_SESSION['currentUserEmail']; ?></h1>
+<h2>Welcome To The Meme Creation Page, <?php echo $_SESSION['currentUserEmail']; ?></h2>
 
 <br><br>
-
 <p><a href="?view=home">Return Home</a></p>
+<p><a href="?view=manage">Manage Your Memes</a></p>
 <p><a href="?view=view">View all user created Memes</a></p>
 <a href="./logout.html.php">Log Out</a>
 

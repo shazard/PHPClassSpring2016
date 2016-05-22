@@ -26,10 +26,11 @@ class DBPhotos extends DB
     public function incrementViews ($photoID)
     {
         $db = $this->getDb();
-        $stmt = $db->prepare("UPDATE photos SET views = views + 1 WHERE photo_id = :photo_id)");
+        $stmt = $db->prepare("UPDATE photos SET views = views + 1 WHERE photo_id = :photo_id");
         $binds = array(
             ":photo_id" => $photoID
         );
+        
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
             return true;
         }        
@@ -49,7 +50,20 @@ class DBPhotos extends DB
         }        
         return false; 
     }
-    
+    public function getAllPhotos() 
+    {
+        $db = $this->getDb();
+        $resultsFromDB = array();
+        $stmt = $db->prepare("SELECT * FROM photos");
+        
+        if ($stmt->execute() && $stmt->rowCount() > 0) 
+        {
+            $resultsFromDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $resultsFromDB;
+        }
+
+    }
     public function getPhotoTitleByFileName( $filename ) 
     {
         $db = $this->getDb();
@@ -72,14 +86,32 @@ class DBPhotos extends DB
         }
     }
     
-        public function getPhotosByUser( $userId ) 
+    public function getPhotosByUser( $userId ) 
     {
         $db = $this->getDb();
         $resultsFromDB = array();
         $stmt = $db->prepare("SELECT * FROM photos WHERE user_id = :user_id");
         
         $binds = array(
-            ":user_id" => $userId,       
+            ":user_id" => $userId       
+        );
+        
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) 
+        {
+            $resultsFromDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $resultsFromDB;
+        }
+
+    }
+    
+    public function getPhotoById( $photoId ) 
+    {
+        $db = $this->getDb();
+        $resultsFromDB = array();
+        $stmt = $db->prepare("SELECT * FROM photos WHERE photo_id = :photo_id");
+        $binds = array(
+            ":photo_id" => $photoId       
         );
         
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) 
