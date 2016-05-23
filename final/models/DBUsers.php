@@ -81,6 +81,7 @@ class DBUsers extends DB
                     ":password" => password_hash($password, PASSWORD_DEFAULT)
                 );
                 if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+                    $_SESSION['results'] = " NEW USER ADDED!";
                     return true;
                 }
             }

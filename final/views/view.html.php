@@ -32,11 +32,7 @@
 
 <h2>Welcome To The View Memes Page</h2>
 
-<br><br>
-<p><a href="?view=home">Return Home</a></p>
-<p><a href="?view=manage">Manage Your Memes</a></p>
-<p><a href="?view=upload">Upload a new image</a></p>
-<a href="./logout.html.php">Log Out</a>
+<br>
 
 <hr>
 
@@ -53,4 +49,4 @@
 <?php endforeach; ?>
 
 <hr>
-<p><a href="?view=home">Return Home</a></p>
+<p><a href="?view=home" class="btn btn-primary">Return Home</a></p>

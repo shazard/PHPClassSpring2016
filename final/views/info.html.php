@@ -17,12 +17,6 @@
 //        ["created"]=> string(19) "2016-05-21 16:10:57" } }
 
 ?>
-<p><a href="?view=home">Return Home</a></p>
-<p><a href="?view=manage">Manage Your Memes</a></p>
-<p><a href="?view=view">View all user created Memes</a></p>
-<p><a href="?view=upload">Upload a new image</a></p>
-<a href="./logout.html.php">Log Out</a>
-
 
     <div class="meme">
         <h2> <?php echo $photo1[0]["title"]; ?></h2>        

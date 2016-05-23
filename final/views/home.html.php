@@ -20,26 +20,24 @@
             }
         }
     }
-    $randomMeme = rand(0,count($files));
+    $randomMeme = rand(0,count($files)-1);
     krsort($files); 
+    //use $i index above and random number to generate picture below
 
 
 //    var_dump($files);
 //    var_dump(count($files));
 //    var_dump($randomMeme);
 ?>
-<h2>Meme of the day!</h2>
-<div class="meme">
-                <h2> <?php echo $photoDB->getPhotoTitleByFileName( $files["fileName"] ); ?></h2>
+<h2>Random Meme of the moment!</h2>
+            <div class="meme">
+                <h2> <?php echo $files[$randomMeme]["title"]; ?></h2>
                 <br>
-                <a href="?view=info&id=<?php echo $file["photo_id"]; ?>">
-                <img src="<?php echo $file["pathName"]; ?>" />
+                <a href="?view=info&id=<?php echo $files[$randomMeme]["photo_id"]; ?>">
+                <img src="<?php echo $files[$randomMeme]["pathName"]; ?>" />
                 </a>
                 <br>
 
             </div>
 
 
-<br><br>
-<p><a href="?view=view">View</a> all user created Memes</p>
-<p><a href="?view=default">Sign up or Log in </a>to create & manage Memes</p>

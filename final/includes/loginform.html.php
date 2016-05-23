@@ -8,6 +8,6 @@
         <span>Password</span>
         <input placeholder="Password" name="pass" type="password" value="" />
     </div>
-    <br><br>
-    <input type="submit" value="Log In" />    
+    <br>
+    <input type="submit" class="btn btn-primary" value="Log In" />    
 </form>

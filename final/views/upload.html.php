@@ -6,28 +6,22 @@
 ?>
 <h2>Welcome To The Meme Creation Page, <?php echo $_SESSION['currentUserEmail']; ?></h2>
 
-<br><br>
-<p><a href="?view=home">Return Home</a></p>
-<p><a href="?view=manage">Manage Your Memes</a></p>
-<p><a href="?view=view">View all user created Memes</a></p>
-<a href="./logout.html.php">Log Out</a>
+<br>
 
 <hr>
 
 <h2>Image Files</h2>
-        <p>
-            <a href="?view=view">View Images</a>
-        </p>
-        <p>
+        
+
+    <p>
         <form>
             <input type="text" placeholder="Title" name="imageTitle" value="" required="required" /> <br />
             <input type="text" placeholder="Meme Top text" name="memetop" value="" required="required" /> <br />
             <input type="text" placeholder="Meme Botom text" name="memebottom" value="" required="required" /> 
             <br />
             <input type="reset" />
-            <input type="button" value="Submit" />
+            <input type="button" class="btn btn-primary" value="Submit" />
         </form>
-
     </p> 
     <div id="files-img">
         <p>Drag an image file from your computer here</p>

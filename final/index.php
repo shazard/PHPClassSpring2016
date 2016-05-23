@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <!--
 
+X
 I should have a signup/login section that will allow me to access the site with privileges. 
 The privilege is to add and maintain their meme images. (10 points)
 
+X
 I can upload an image to the site only when I am logged in. 
 When uploaded save the image and link it to the user who uploaded it (10 points)
 
+X
 Users who log in can remove the photos they uploaded. (10 points) 
 
+X
 All users can view the main site (meme generated photos) without logging in. 
 Display the title of the meme along with the image. (10 points)
 
+X
 I should have a meme photo of the moment on the main site that is selected randomly. (10 points)
 
+X
 Each image clicked on should take you to a view page with more information 
 about the image (size, date created, title, views). The meme image view should increment the view count in the database. (10 points)
 
+X
 I should be able to share a meme image by email and social media. (10 points)
 
+X
 Add bootstrap and add CSS styles to your application. (5 points)
-
-
-
-left to do:
-    X update "home" page to be "manage" page
-    create new home page with meme of the day, link to view all memes, and login link
-    create new "include" file with user only links and separate links for anyone from user links
-    update new home page to only include user links if logged in
 
 
 -->
@@ -70,11 +70,31 @@ left to do:
                     {
                         if ( !isset($_SESSION['isValidUser']) || $_SESSION['isValidUser'] !== true )
                         {
-                        $results = 'Invalid Login. Sorry, please try again';
+                        $_SESSION['results'] = 'Invalid Login. Sorry, please try again';
                         }
                     }
                 }
         ?>
+        
+        <h1>Welcome to my Meme generator site.</h1>
+        <hr>
+        <h3>Navigation:</h3>
+        <p><a class="btn btn-primary" href="?view=home">Return Home</a></p>
+        <p><a class="btn btn-primary" href="?view=view">View all user created Memes</a></p>
+        
+        <?php if ( !isset($_SESSION['isValidUser']) || $_SESSION['isValidUser'] !== true ): ?>
+
+        <p><a class="btn btn-primary" href="?view=default">Sign up / Log in </a></p>
+
+        <?php else: ?>
+        
+        <p><a class="btn btn-success" href="?view=manage">Manage Your Memes</a></p>
+        <p><a class="btn btn-success" href="?view=upload">Upload a new image</a></p>
+        <a class="btn btn-success" href="./logout.html.php">Log Out</a>
+        
+        <?php endif ?>
+        
+        <hr>
         
         <?php 
             //output of success or error messages

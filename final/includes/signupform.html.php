@@ -9,6 +9,6 @@
         <input placeholder="Password" name="signup_pass" type="password" value="" />
     </div>
     <br><br>
-    <input type="submit" value="Create User" />    
+    <input type="submit" class="btn btn-primary" value="Create User" />    
 </form>
 

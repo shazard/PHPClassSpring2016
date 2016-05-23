@@ -18,6 +18,7 @@ class DBPhotos extends DB
             ":title" => $title
         );
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $_SESSION['results'] = " IMAGE ADDED!";
             return true;
         }        
         return false;    

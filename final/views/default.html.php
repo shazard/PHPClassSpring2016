@@ -8,4 +8,4 @@ include 'includes/loginform.html.php';
 ?>
 <hr>
 <h2>Not signed up?</h2><br>
-<a href="?view=signup">Sign Up Now</a>
+<a href="?view=signup" class="btn btn-primary">Sign Up Now</a>
